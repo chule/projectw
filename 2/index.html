@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<style>
+
+body,
+text,
+tspan {
+    font-family: 'Open Sans', sans-serif;
+}   
+.wrapper {
+    width: 960px; 
+    margin: 0 auto;
+}
+.description, .header {
+    width: 850px; 
+    margin: 0 auto;
+    font-size: 14px;
+    color: #55585a;
+}
+
+</style>
+<div class="wrapper">
+        <div class="header">
+            <h1>2)WHAT WAS THE US FUNDING THAT WAS EFFECTED FROM 1980-PRESENT?</h1>
+            <p>
+                   Family planning/reproductive health • Maternal and child health • Nutrition • HIV/AIDS (including PEPFAR) • Malaria (including President’s Malaria Initiative) • Tuberculosis • Infectious diseases • Neglected tropical diseases • Water sanitation and hygiene (at household and community level)
+            </p>
+        </div>
+
+    <div class="buttons"></div>
+    <svg width="960" height="500"></svg> 
+</div>
+
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
+var parseTime = d3.timeParse("%Y");
+
+var x = d3.scaleTime()
+    .rangeRound([0, width]);
+
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+var g = svg.append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var values = ["usAssistance","inflationAdjusted","bilateralPrograms","contributionUnfpa","budgetRequest","congressionalAppropriation"]
+
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+d3.json("data.json", function(error, data0) {
+  if (error) throw error;
+
+    var data = data0.years.map(function (d,i) {
+        return {
+            date: parseTime(d),
+            usAssistance: data0.usAssistance.values[i],
+            inflationAdjusted: data0.inflationAdjusted.values[i],
+            bilateralPrograms: data0.bilateralPrograms.values[i],
+            contributionUnfpa: data0.contributionUnfpa.values[i],
+            budgetRequest: data0.budgetRequest.values[i],
+            congressionalAppropriation: data0.congressionalAppropriation.values[i],
+        }
+    })
+
+
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) { return d.budgetRequest; })]);
+  
+    values.forEach(function(value) {
+        addGraphs(value);
+        d3.select("div.buttons").append("button")
+            .attr("class", value)
+            .text(data0[value].text)
+    })
+  
+    d3.selectAll("button").on("click",function(d) {
+        var thisClass = d3.select(this).attr("class");
+
+        var thisOpacity = d3.select("g." + thisClass).style("opacity");
+        
+        var nextOpacity = (+thisOpacity + 1) % 2;
+
+        if (nextOpacity) {
+            d3.select(this).style("color","steelblue");
+        } else {
+            d3.select(this).style("color","black");
+        }
+        
+
+        d3.select("g." + thisClass).style("opacity", nextOpacity);
+    });
+
+    function addGraphs(value) {
+
+        var area = d3.area()
+            .x(function(d) { return x(d.date); })
+            .y1(function(d) { return y(d[value]); });
+
+        var valueline = d3.line()
+            .x(function(d) { return x(d.date); })
+            .y(function(d) { return y(d[value]); });
+
+        area.y0(y(0));
+
+        var newg = g.append("g")
+                .attr("class", value)
+                .style("opacity",0);
+
+        newg.append("path")
+            .datum(data)
+            .attr("fill", function (d,i) {
+                return color(values.indexOf(value));
+            })
+            .attr("d", area)
+            .style("opacity", 0.5);
+
+        newg.append("path")
+            .data([data])
+            .attr("class", "line")
+            .style("fill","none")
+            .style("stroke",function (d,i) {
+                return color(values.indexOf(value));
+            })
+            .style("stroke-width",2)
+            .attr("d", valueline);
+
+    }
+        g.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        g.append("g")
+            .call(d3.axisLeft(y))
+            .append("text")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end")
+            .text("In the millions of dollars");
+
+        d3.select("g.usAssistance").style("opacity",1);
+        d3.select("button.usAssistance").style("color","steelblue");
+});
+
+</script>

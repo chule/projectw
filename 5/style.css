@@ -1,0 +1,204 @@
+.names {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+    }
+  
+      /* Tooltip CSS */
+  
+  .counties {
+    fill: none;
+  }
+  
+  body {
+    
+    margin: 0;
+    position: relative;
+    tab-size: 2;  
+    background-color: #fff;
+  }
+  
+  body,
+  text,
+  tspan {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  
+  .key path {
+    display: none;
+  }
+  
+  .key line {
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+  
+  .key rect {
+    cursor: pointer;
+  }
+  
+  .updateButton rect {
+    cursor: pointer;
+  }
+  
+  .states {
+    /*fill: none;
+    stroke: #000;*/
+   /* stroke-linejoin: round;*/
+  
+    stroke: #999;
+    /*stroke-dasharray: 2,2;*/
+    stroke-linejoin: round;
+  }
+  
+  /*.states.fade {
+    display: none;
+  }   */
+  
+  .black { fill: #000000;}
+  
+  .tick text {
+    font-size: 10px;
+  }
+  
+  .subunit { 
+    /*fill: #ddc; */
+    cursor: pointer; 
+  }
+  
+  .subunit-boundary {
+    fill: none;
+    stroke: #fff;
+    /*stroke-dasharray: 2,2;
+    stroke-linejoin: round;*/
+  }
+  
+  
+  div.tooltip {
+      max-width: 200px;
+      position: absolute;
+      text-align: left;
+      display: inline;
+      padding: 6px;
+      font-size: 13px;
+      background-color: #000;
+      border: 0px;
+      border-radius: 2px;
+      pointer-events: none;
+      color: #fff;
+  }
+  
+  
+  
+  .svg {
+    width: 960px; 
+    margin: 0 auto;
+  }
+  
+  .description, .header {
+    width: 850px; 
+    margin: 0 auto;
+    font-size: 14px;
+    color: #55585a;
+  }
+  
+  
+  
+  .grey {
+    fill: #cccccc;
+  }
+  
+  
+  .scales {
+    fill: url(#scales-gradient);
+    stroke-width: 05px;
+  }
+  
+  .background {
+    fill: url(#background-gradient);
+    stroke-width: 05px;
+  }
+  
+  .tick {
+    fill: #787878;
+  }
+  
+  .tick line{
+    stroke: lightgrey;
+  }
+  
+  .caption {
+    fill: #787878;
+    font-size: 13px;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  
+  
+  .navButton {
+      cursor: pointer;
+      stroke-opacity  : 0;
+  }
+  
+  .navButton:hover {
+      /*opacity: 0.5;*/
+  
+  
+      stroke          : gray;
+      stroke-dashoffset: 60%;
+      stroke-dasharray: 62.1%;
+      /*stroke-dasharray: 15, 10, 5, 10, 15;*/
+      stroke-opacity  : 8;
+      fill            : transparent;
+      stroke-width: 0.5;
+  
+  }
+  
+  
+  .navButton.selected {
+  /*    fill: lightgrey;
+      opacity: 0.3;*/
+  /*    stroke          : gray;
+      stroke-dashoffset: 50%;
+      stroke-dasharray: 50%;
+      stroke-opacity  : 0.5;*/
+      stroke          : steelblue;
+      stroke-dashoffset: 60%;
+      stroke-dasharray: 62.1%;
+      /*stroke-dasharray: 15, 10, 5, 10, 15;*/
+      stroke-opacity  : 1;
+      fill            : transparent;
+      stroke-width: 1;    
+  }
+  
+  #mainTitle {
+    font-size: 30px;
+    /* fill: grey; */
+    text-transform: uppercase;
+    font-stretch: normal;
+    font-variant: normal;
+    font-weight: bold;
+    font-style: normal;
+    fill: rgb(85, 88, 90);
+  }
+  
+  #subtitle {
+    font-size: 16px;
+    font-style: normal;
+    fill: rgb(85, 88, 90);
+  }
+  
+  .footer {
+    fill: rgb(85, 88, 90);
+    font-size: 11px;
+  }
+  
+  
+  /*    text{
+        pointer-events:none;
+      }*/
+  
+      .details{
+        color:white;
+      }
