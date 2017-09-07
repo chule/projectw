@@ -1,24 +1,5 @@
 [
     {
-        "FiscalYear": "1965",
-        "Assistance": "10.5",
-        "Bilateral": "10.5",
-        "Contribution": "0",
-        "BudgetRequest": "0",
-        "Congressional": "0",
-        "Constant": "15.5",
-        "president": "Lyndon B. Johnson",
-        "vice_president": "Hubert Humphrey",
-        "administration_start_at": "Nov-1963",
-        "administration_end_at": "Jan-1969",
-        "party": "Democrats",
-        "house_major": "Democrats",
-        "senate_major": "Democrats",
-        "re_hm": "",
-        "re_sm": "",
-        "ID": "1"
-    },
-    {
         "FiscalYear": "1968",
         "Assistance": "34.8",
         "Bilateral": "34.8",

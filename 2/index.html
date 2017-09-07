@@ -1,139 +1,697 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <style>
+    body,
+    text,
+    tspan {
+        font-family: 'Open Sans', sans-serif;
+    }
 
-body,
-text,
-tspan {
-    font-family: 'Open Sans', sans-serif;
-}   
-.wrapper {
-    width: 960px; 
-    margin: 0 auto;
-}
-.description, .header {
-    width: 850px; 
-    margin: 0 auto;
-    font-size: 14px;
-    color: #55585a;
-}
+    .wrapper {
+        width: 960px;
+        margin: 0 auto;
+    }
 
+    .description,
+    .header {
+        width: 850px;
+        margin: 0 auto;
+        font-size: 14px;
+        color: #55585a;
+    }
+
+    .buttons {
+        text-align: center;
+    }
 </style>
 <div class="wrapper">
-        <div class="header">
-            <h1>2)WHAT WAS THE US FUNDING THAT WAS EFFECTED FROM 1980-PRESENT?</h1>
-            <p>
-                Family planning/reproductive health • Maternal and child health • Nutrition • HIV/AIDS (including PEPFAR) • Malaria (including President’s Malaria Initiative) • Tuberculosis • Infectious diseases • Neglected tropical diseases • Water sanitation and hygiene (at household and community level)
-            </p>
-        </div>
+    <div class="header">
+        <h1>WHAT WAS THE US FUNDING THAT WAS EFFECTED FROM 1980-PRESENT?</h1>
+        <p>
+            Family planning/reproductive health • Maternal and child health • Nutrition • HIV/AIDS (including PEPFAR) • Malaria (including
+            President’s Malaria Initiative) • Tuberculosis • Infectious diseases • Neglected tropical diseases • Water sanitation
+            and hygiene (at household and community level)
+        </p>
+    </div>
 
     <div class="buttons"></div>
-    <svg width="960" height="500"></svg> 
+    <svg width="960" height="500"></svg>
+
+    <div class="content-row-scroll-btn nomargin">
+
+        <style>
+            label {
+                margin-bottom: 0;
+            }
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 90px;
+                height: 16px;
+                margin-bottom: -2px;
+                margin-left: 10px;
+            }
+
+            .switch input {
+                display: none;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #1F81EA;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider2 {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #F15358;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider3 {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #B4B4B4;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 16px;
+                width: 16px;
+                left: 4px;
+                /*
+          bottom: 4px;
+          */
+                background-color: #114378;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider2:before {
+                position: absolute;
+                content: "";
+                height: 16px;
+                width: 16px;
+                left: 4px;
+                /*
+          bottom: 4px;
+          */
+                background-color: #CC282C;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider3:before {
+                position: absolute;
+                content: "";
+                height: 16px;
+                width: 16px;
+                left: 4px;
+                /*
+          bottom: 4px;
+          */
+                background-color: #3C3C3C;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            input:checked+.slider {
+                background-color: #1F81EA;
+            }
+
+            input:focus+.slider {
+                box-shadow: 0 0 1px #2196F3;
+            }
+
+            input:checked+.slider2 {
+                background-color: #F15358;
+            }
+
+            input:focus+.slider2 {
+                box-shadow: 0 0 1px #2196F3;
+            }
+
+            input:checked+.slider3 {
+                background-color: #B4B4B4;
+            }
+
+            input:focus+.slider3 {
+                box-shadow: 0 0 1px #2196F3;
+            }
+
+            input:checked+.slider:before {
+                -webkit-transform: translateX(55px);
+                -ms-transform: translateX(55px);
+                transform: translateX(55px);
+            }
+
+            input:checked+.slider2:before {
+                -webkit-transform: translateX(55px);
+                -ms-transform: translateX(55px);
+                transform: translateX(55px);
+            }
+
+            input:checked+.slider3:before {
+                -webkit-transform: translateX(55px);
+                -ms-transform: translateX(55px);
+                transform: translateX(55px);
+            }
+            /*------ ADDED CSS ---------*/
+
+            .on {
+                display: none;
+            }
+
+            .on,
+            .off {
+                color: white;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                font-size: 10px;
+                font-family: Verdana, sans-serif;
+            }
+
+            input:checked+.slider .on {
+                display: block;
+            }
+
+            input:checked+.slider .off {
+                display: none;
+            }
+
+            input:checked+.slider2 .on {
+                display: block;
+            }
+
+            input:checked+.slider2 .off {
+                display: none;
+            }
+
+            input:checked+.slider3 .on {
+                display: block;
+            }
+
+            input:checked+.slider3 .off {
+                display: none;
+            }
+            /*--------- END --------*/
+            /* Rounded sliders */
+
+            .slider.round {
+                border-radius: 34px;
+            }
+
+            .slider2.round {
+                border-radius: 34px;
+            }
+
+            .slider3.round {
+                border-radius: 34px;
+            }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+
+            .slider2.round:before {
+                border-radius: 50%;
+            }
+
+            .slider3.round:before {
+                border-radius: 50%;
+            }
+
+            .democrats,
+            .republicans,
+            .pa {
+                /*
+                        float:left;
+                        */
+                margin-right: 45px;
+                font-weight: bold;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .democrats {
+                color: #204C7E;
+            }
+
+            .republicans {
+                color: #D0484C;
+            }
+
+            .pa {
+                color: #3F3F3F;
+                width: 270px;
+            }
+
+            .congress-inner {
+                width: 520px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .sb-btn-inner {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .demoimg {
+                vertical-align: initial;
+            }
+        </style>
+        <div class="row nomargin pa-row">
+            <style>
+                .pa-bottom-text {
+                    text-align: center;
+                    color: #555;
+                    font-weight: 900;
+                    margin-top: 30px;
+                    margin-bottom: 40px;
+                }
+
+                .partycontrol {
+                    text-align: center;
+                    margin-top: 20px;
+                    font-family: Gotham SSm A, Gotham SSm B, Montserrat, Helveltica Neue, Helvetica, Arial, sans-serif;
+                    margin-bottom: 20px;
+                    color: #3F3F3F;
+                    font-weight: bold;
+                }
+
+                .congressimg {
+                    margin-left: 30px;
+                }
+
+                @media screen and (min-width: 768px) {
+                    .rwd-break {
+                        display: none;
+                    }
+                }
+
+                #slidemiddle {
+                    display: block;
+                    margin: auto;
+                    text-align: center;
+                    float: none;
+                }
+
+                .sbtop,
+                .sbbot {
+                    float: left;
+                }
+            </style>
+
+
+        </div>
+        <div class="sb-btn-inner row nomargin">
+            <div class="pa">
+                <div class="sbtop">
+                    <img class="demoimg" src="PresAdmin_Icon.png">
+                    <span>PRESIDENTIAL ADMINISTRATIONS</span>
+                </div>
+                <div class="sbbot" id="slidemiddle">
+                    <label class="switch"><input type="checkbox" id="pr"><div class="slider3 round"><!--ADDED HTML --><span class="on" id="paon">ON</span><span class="off" id="paoff">OFF</span><!--END--></div></label>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="congress-row row nomargin">
+            <p class="partycontrol" style="color:#3F3F3F;">
+                PARTY CONTROL IN CONGRESS
+            </p>
+            <div class="congress-inner row nomargin">
+                <div class="democrats">
+                    <div class="sbtop">
+                        <img class="demoimg congressimg" src="Democrat_Icon.png">
+                        <span>DEMOCRATS</span>
+                    </div>
+                    <div class="sbbot">
+                        <label class="switch"><input type="checkbox" id="democrat_switch"><div class="slider round"><!--ADDED HTML --><span class="on" id="deon">ON</span><span class="off" id="deoff">OFF</span><!--END--></div></label>
+                    </div>
+
+
+                </div>
+                <div class="republicans">
+                    <div class="sbtop">
+                        <img class="demoimg congressimg" src="Republican_Icon.png">
+                        <span>REPUBLICANS</span>
+                    </div>
+                    <div class="sbbot">
+                        <label class="switch"><input type="checkbox" id="republican_switch"><div class="slider2 round"><!--ADDED HTML --><span class="on" id="reon">ON</span><span class="off" id="reoff">OFF</span><!--END--></div></label>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 
 <script src="../d3.v4.min.js"></script>
 
 <script>
+    var svg = d3.select("svg"),
+        margin = { top: 20, right: 20, bottom: 30, left: 50 },
+        width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom;
 
-var svg = d3.select("svg"),
-    margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom;
+    var parseTime = d3.timeParse("%Y");
 
-var parseTime = d3.timeParse("%Y");
+    var x = d3.scaleTime()
+        .range([0, width]);
 
-var x = d3.scaleTime()
-    .rangeRound([0, width]);
+    var y = d3.scaleLinear()
+        .range([height, 0]);
 
-var y = d3.scaleLinear()
-    .rangeRound([height, 0]);
-
-var g = svg.append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-//var values = ["usAssistance","inflationAdjusted","bilateralPrograms","contributionUnfpa","budgetRequest","congressionalAppropriation"];
-var values = ["usAssistance","inflationAdjusted"];
-var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-d3.json("data.json", function(error, data0) {
-  if (error) throw error;
-
-    var data = data0.years.map(function (d,i) {
-        return {
-            date: parseTime(d),
-            usAssistance: data0.usAssistance.values[i],
-            inflationAdjusted: data0.inflationAdjusted.values[i],
-            bilateralPrograms: data0.bilateralPrograms.values[i],
-            contributionUnfpa: data0.contributionUnfpa.values[i],
-            budgetRequest: data0.budgetRequest.values[i],
-            congressionalAppropriation: data0.congressionalAppropriation.values[i],
-        }
-    })
+    var presidentsSwitch = 0;
+    var democratsSwitch = 0;
+    var republicansSwitch = 0;
 
 
-    x.domain(d3.extent(data, function(d) { return d.date; }));
-    y.domain([0, d3.max(data, function(d) { return d.budgetRequest; })]);
-  
-    values.forEach(function(value) {
-        addGraphs(value);
-        d3.select("div.buttons").append("button")
-            .attr("class", value)
-            .text(data0[value].text)
-    })
-  
-    d3.selectAll("button").on("click",function(d) {
-        var thisClass = d3.select(this).attr("class");
+    var g = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var thisOpacity = d3.select("g." + thisClass).style("opacity");
-        
-        var nextOpacity = (+thisOpacity + 1) % 2;
+    //var values = ["usAssistance","inflationAdjusted","bilateralPrograms","contributionUnfpa","budgetRequest","congressionalAppropriation"];
+    var values = ["usAssistance", "inflationAdjusted"];
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-        if (nextOpacity) {
-            d3.select(this).style("color","steelblue");
-        } else {
-            d3.select(this).style("color","black");
-        }
-        
+    d3.queue()
+        .defer(d3.json, "data.json")
+        .defer(d3.json, "data1.json")
+        .await(ready);
 
-        d3.select("g." + thisClass).style("opacity", nextOpacity);
-    });
 
-    function addGraphs(value) {
+    function ready(error, data0, data1) {
+        if (error) throw error;
 
-        var area = d3.area()
-            .x(function(d) { return x(d.date); })
-            .y1(function(d) { return y(d[value]); });
+        var data = data0.years.map(function (d, i) {
+            return {
+                date: parseTime(d),
+                usAssistance: data0.usAssistance.values[i],
+                inflationAdjusted: data0.inflationAdjusted.values[i],
+                bilateralPrograms: data0.bilateralPrograms.values[i],
+                contributionUnfpa: data0.contributionUnfpa.values[i],
+                budgetRequest: data0.budgetRequest.values[i],
+                congressionalAppropriation: data0.congressionalAppropriation.values[i],
+            }
+        })
 
-        var valueline = d3.line()
-            .x(function(d) { return x(d.date); })
-            .y(function(d) { return y(d[value]); });
+        console.log(data1[0]);
 
-        area.y0(y(0));
+        x.domain(d3.extent(data1, function (d) { return parseTime(d.FiscalYear); }));
+        y.domain([0, d3.max(data1, function (d) { return d.BudgetRequest; })]);
 
-        var newg = g.append("g")
+        values.forEach(function (value) {
+            addGraphs(value);
+            d3.select("div.buttons").append("button")
                 .attr("class", value)
-                .style("opacity",0);
+                .text(data0[value].text);
+        })
 
-        newg.append("path")
-            .datum(data)
-            .attr("fill", function (d,i) {
-                return color(values.indexOf(value));
-            })
-            .attr("d", area)
-            .style("opacity", 0.5);
+        d3.selectAll("button").on("click", function (d) {
+            var thisClass = d3.select(this).attr("class");
 
-        newg.append("path")
-            .data([data])
-            .attr("class", "line")
-            .style("fill","none")
-            .style("stroke",function (d,i) {
-                return color(values.indexOf(value));
-            })
-            .style("stroke-width",2)
-            .attr("d", valueline);
+            var thisOpacity = d3.select("g." + thisClass).style("opacity");
 
-    }
+            var nextOpacity = (+thisOpacity + 1) % 2;
+
+            if (nextOpacity) {
+                d3.select(this).style("color", "steelblue");
+            } else {
+                d3.select(this).style("color", "black");
+            }
+
+            d3.select("g." + thisClass).style("opacity", nextOpacity);
+        });
+
+
+        function addGraphs(value) {
+            var area = d3.area()
+                .x(function (d) { return x(d.date); })
+                .y1(function (d) { return y(d[value]); });
+
+            var valueline = d3.line()
+                .x(function (d) { return x(d.date); })
+                .y(function (d) { return y(d[value]); });
+
+            area.y0(y(0));
+
+            var newg = g.append("g")
+                .attr("class", value)
+                .style("opacity", 0);
+
+            newg.append("path")
+                .datum(data)
+                .attr("fill", function (d, i) {
+                    return color(values.indexOf(value));
+                })
+                .attr("d", area)
+                .style("opacity", 0.5);
+
+            newg.append("path")
+                .data([data])
+                .attr("class", "line")
+                .style("fill", "none")
+                .style("stroke", function (d, i) {
+                    return color(values.indexOf(value));
+                })
+                .style("stroke-width", 2)
+                .attr("d", valueline);
+
+        }
+
+        function presidents() {
+
+            var presidents = g.append("g").attr("class", "presidentsGraph");
+
+            presidents.selectAll(".bar")
+                .data(data1)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                .attr("width", x(parseTime(2018)) / 50)
+                .style("fill", function (d) {
+                    //return d.house_major === "Democrats" ? "blue" : "red";
+                    return d.party === "Democrats" ? "blue" : "red";
+                })
+                .style("opacity", function (d, i) {
+                    if (i === data1.length - 1) {
+                        return 0;
+                    }
+                    return 0.3;
+                })
+                .attr("y", function (d) { return 0; })
+                .attr("height", function (d) { return height; });
+        }
+
+
+        function democrats() {
+
+            var democrats = g.append("g").attr("class", "democratsGraph");
+
+            democrats.selectAll(".bar")
+                .data(data1)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                .attr("width", x(parseTime(2018)) / 50)
+                .style("fill", function (d) {
+                    //return d.house_major === "Democrats" ? "blue" : "red";
+                    return d.house_major === "Democrats" ? "blue" : null;
+                })
+                .style("display", function (d) {
+                    if (d.house_major !== "Democrats") {
+                        return "none";
+                    }
+                })
+                .style("opacity", function (d, i) {
+                    if (i === data1.length - 1) {
+                        return 0;
+                    }
+                    return 0.3;
+                })
+                .attr("y", function (d) { return 0; })
+                .attr("height", function (d) { return height; });
+
+            democrats.selectAll(".bar1")
+                .data(data1)
+                .enter().append("rect")
+                .attr("class", "bar1")
+                .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                .attr("width", x(parseTime(2018)) / 50)
+                .style("fill", function (d) {
+                    //return d.house_major === "Democrats" ? "blue" : "red";
+                    return d.senate_major === "Democrats" ? "blue" : null;
+                })
+                .style("display", function (d) {
+                    if (d.senate_major !== "Democrats") {
+                        return "none";
+                    }
+                })
+                .style("opacity", function (d, i) {
+                    if (i === data1.length - 1) {
+                        return 0;
+                    }
+                    return 0.3;
+                })
+                .attr("y", function (d) { return 0; })
+                .attr("height", function (d) { return height; });
+
+        }
+
+
+        function republicans() {
+
+            var republicans = g.append("g").attr("class", "republicansGraph");
+
+            republicans.selectAll(".bar")
+                .data(data1)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                .attr("width", x(parseTime(2018)) / 50)
+                .style("fill", function (d) {
+                    //return d.house_major === "Democrats" ? "blue" : "red";
+                    return d.house_major === "Republicans" ? "red" : null;
+                })
+                .style("display", function (d) {
+                    if (d.house_major !== "Republicans") {
+                        return "none";
+                    }
+                })
+                .style("opacity", function (d, i) {
+                    if (i === data1.length - 1) {
+                        return 0;
+                    }
+                    return 0.3;
+                })
+                .attr("y", function (d) { return 0; })
+                .attr("height", function (d) { return height; });
+
+            republicans.selectAll(".bar1")
+                .data(data1)
+                .enter().append("rect")
+                .attr("class", "bar1")
+                .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                .attr("width", x(parseTime(2018)) / 50)
+                .style("fill", function (d) {
+                    //return d.house_major === "Democrats" ? "blue" : "red";
+                    return d.senate_major === "Republicans" ? "red" : null;
+                })
+                .style("display", function (d) {
+                    if (d.senate_major !== "Republicans") {
+                        return "none";
+                    }
+                })
+                .style("opacity", function (d, i) {
+                    if (i === data1.length - 1) {
+                        return 0;
+                    }
+                    return 0.3;
+                })
+                .attr("y", function (d) { return 0; })
+                .attr("height", function (d) { return height; });
+
+        }
+
+        d3.select("#pr").on("change", function (d) {
+
+            d3.select(".democratsGraph").remove();
+            d3.select(".republicansGraph").remove();
+
+            if (presidentsSwitch === 0) {
+                presidentsSwitch = 1;
+                presidents();
+            } else {
+                presidentsSwitch = 0;
+                d3.select(".presidentsGraph").remove();
+            }
+
+
+            democratsSwitch = 0;
+            republicansSwitch = 0;
+            d3.select("#democrat_switch").property("checked", false);
+            d3.select("#republican_switch").property("checked", false);
+
+        })
+
+        d3.select("#democrat_switch").on("change", function (d) {
+
+            d3.select(".presidentsGraph").remove();
+            d3.select(".republicansGraph").remove();
+
+            if (democratsSwitch === 0) {
+                democratsSwitch = 1;
+                democrats();
+            } else {
+                democratsSwitch = 0;
+                d3.select(".democratsGraph").remove();
+            }
+
+
+            presidentsSwitch = 0;
+            republicansSwitch = 0;
+            d3.select("#pr").property("checked", false);
+            d3.select("#republican_switch").property("checked", false);
+
+        })
+
+
+        d3.select("#republican_switch").on("change", function (d) {
+
+            d3.select(".presidentsGraph").remove();
+            d3.select(".democratsGraph").remove();
+
+            if (republicansSwitch === 0) {
+                republicansSwitch = 1;
+                republicans();
+            } else {
+                republicansSwitch = 0;
+                d3.select(".democratsGraph").remove();
+            }
+
+
+            presidentsSwitch = 0;
+            democratsSwitch = 0;
+            d3.select("#pr").property("checked", false);
+            d3.select("#democrat_switch").property("checked", false);
+
+        })
+
+
         g.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
@@ -143,13 +701,14 @@ d3.json("data.json", function(error, data0) {
             .append("text")
             .attr("fill", "#000")
             .attr("transform", "rotate(-90)")
-            .attr("y", 6)
+            .attr("y", -40)
             .attr("dy", "0.71em")
+            .attr("x", -180)
             .attr("text-anchor", "end")
             .text("In the millions of dollars");
 
-        d3.select("g.usAssistance").style("opacity",1);
-        d3.select("button.usAssistance").style("color","steelblue");
-});
+        d3.select("g.usAssistance").style("opacity", 1);
+        d3.select("button.usAssistance").style("color", "steelblue");
+    };
 
 </script>
