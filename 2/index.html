@@ -627,15 +627,15 @@
 
         d3.select("#pr").on("change", function (d) {
 
-            d3.select(".democratsGraph").remove();
             d3.select(".republicansGraph").remove();
+            d3.select(".presidentsGraph").remove();
+            d3.select(".democratsGraph").remove();
 
             if (presidentsSwitch === 0) {
                 presidentsSwitch = 1;
                 presidents();
             } else {
                 presidentsSwitch = 0;
-                d3.select(".presidentsGraph").remove();
             }
 
 
@@ -648,15 +648,15 @@
 
         d3.select("#democrat_switch").on("change", function (d) {
 
-            d3.select(".presidentsGraph").remove();
             d3.select(".republicansGraph").remove();
+            d3.select(".presidentsGraph").remove();
+            d3.select(".democratsGraph").remove();
 
             if (democratsSwitch === 0) {
                 democratsSwitch = 1;
                 democrats();
             } else {
                 democratsSwitch = 0;
-                d3.select(".democratsGraph").remove();
             }
 
 
@@ -670,6 +670,7 @@
 
         d3.select("#republican_switch").on("change", function (d) {
 
+            d3.select(".republicansGraph").remove();
             d3.select(".presidentsGraph").remove();
             d3.select(".democratsGraph").remove();
 
@@ -678,9 +679,8 @@
                 republicans();
             } else {
                 republicansSwitch = 0;
-                d3.select(".democratsGraph").remove();
+                
             }
-
 
             presidentsSwitch = 0;
             democratsSwitch = 0;
