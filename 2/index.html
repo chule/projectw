@@ -23,7 +23,7 @@ tspan {
         <div class="header">
             <h1>2)WHAT WAS THE US FUNDING THAT WAS EFFECTED FROM 1980-PRESENT?</h1>
             <p>
-                   Family planning/reproductive health • Maternal and child health • Nutrition • HIV/AIDS (including PEPFAR) • Malaria (including President’s Malaria Initiative) • Tuberculosis • Infectious diseases • Neglected tropical diseases • Water sanitation and hygiene (at household and community level)
+                Family planning/reproductive health • Maternal and child health • Nutrition • HIV/AIDS (including PEPFAR) • Malaria (including President’s Malaria Initiative) • Tuberculosis • Infectious diseases • Neglected tropical diseases • Water sanitation and hygiene (at household and community level)
             </p>
         </div>
 
@@ -52,8 +52,8 @@ var y = d3.scaleLinear()
 var g = svg.append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var values = ["usAssistance","inflationAdjusted","bilateralPrograms","contributionUnfpa","budgetRequest","congressionalAppropriation"]
-
+//var values = ["usAssistance","inflationAdjusted","bilateralPrograms","contributionUnfpa","budgetRequest","congressionalAppropriation"];
+var values = ["usAssistance","inflationAdjusted"];
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 d3.json("data.json", function(error, data0) {
