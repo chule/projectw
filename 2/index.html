@@ -23,11 +23,41 @@
 
     .buttons {
         text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .switches {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .sbbot {
+        float: left;
+        margin-left: 20px;
+    }
+
+    div.tooltip {
+        max-width: 200px;
+        position: absolute;
+        text-align: left;
+        display: inline;
+        padding: 6px;
+        font-size: 13px;
+        background-color: #000;
+        border: 0px;
+        border-radius: 2px;
+        pointer-events: none;
+        color: #fff;
+    }
+
+    .wrapper h4 {
+        text-align: center;
     }
 </style>
 <div class="wrapper">
     <div class="header">
-        <h1>WHAT WAS THE US FUNDING THAT WAS EFFECTED FROM 1980-PRESENT?</h1>
+        <h1>US Funding for International Family Planning </h1>
         <p>
             Family planning/reproductive health • Maternal and child health • Nutrition • HIV/AIDS (including PEPFAR) • Malaria (including
             President’s Malaria Initiative) • Tuberculosis • Infectious diseases • Neglected tropical diseases • Water sanitation
@@ -36,6 +66,23 @@
     </div>
 
     <div class="buttons"></div>
+    <h4>Political influence on U.S. Assistance</h4>
+    <div class="switches">
+        
+        <div class="sbbot">
+            <label class="switch"><input type="checkbox" id="pr"><div class="slider3 round"><!--ADDED HTML --><span class="on" id="paon">ON</span><span class="off" id="paoff">OFF</span><!--END--></div></label>            PRESIDENTIAL ADMINISTRATIONS
+        </div>
+
+        <div class="sbbot">
+            <label class="switch"><input type="checkbox" id="democrat_switch"><div class="slider round"><!--ADDED HTML --><span class="on" id="deon">ON</span><span class="off" id="deoff">OFF</span><!--END--></div></label>            DEMOCRATS
+        </div>
+
+        <div class="sbbot">
+            <label class="switch"><input type="checkbox" id="republican_switch"><div class="slider2 round"><!--ADDED HTML --><span class="on" id="reon">ON</span><span class="off" id="reoff">OFF</span><!--END--></div></label>            REPUBLICANS
+        </div>
+    </div>
+
+
     <svg width="960" height="500"></svg>
 
     <div class="content-row-scroll-btn nomargin">
@@ -284,7 +331,7 @@
                 vertical-align: initial;
             }
         </style>
-        <div class="row nomargin pa-row">
+        <!-- <div class="row nomargin pa-row">
             <style>
                 .pa-bottom-text {
                     text-align: center;
@@ -323,11 +370,27 @@
                 .sbtop,
                 .sbbot {
                     float: left;
+                    margin-left: 20px;
+                }
+
+                div.tooltip {
+                    max-width: 200px;
+                    position: absolute;
+                    text-align: left;
+                    display: inline;
+                    padding: 6px;
+                    font-size: 13px;
+                    background-color: #000;
+                    border: 0px;
+                    border-radius: 2px;
+                    pointer-events: none;
+                    color: #fff;
                 }
             </style>
 
 
-        </div>
+        </div> -->
+        <!-- 
         <div class="sb-btn-inner row nomargin">
             <div class="pa">
                 <div class="sbtop">
@@ -335,7 +398,7 @@
                     <span>PRESIDENTIAL ADMINISTRATIONS</span>
                 </div>
                 <div class="sbbot" id="slidemiddle">
-                    <label class="switch"><input type="checkbox" id="pr"><div class="slider3 round"><!--ADDED HTML --><span class="on" id="paon">ON</span><span class="off" id="paoff">OFF</span><!--END--></div></label>
+                    <label class="switch"><input type="checkbox" id="pr"><div class="slider3 round"><span class="on" id="paon">ON</span><span class="off" id="paoff">OFF</span></div></label>
                 </div>
 
 
@@ -355,7 +418,7 @@
                         <span>DEMOCRATS</span>
                     </div>
                     <div class="sbbot">
-                        <label class="switch"><input type="checkbox" id="democrat_switch"><div class="slider round"><!--ADDED HTML --><span class="on" id="deon">ON</span><span class="off" id="deoff">OFF</span><!--END--></div></label>
+                        <label class="switch"><input type="checkbox" id="democrat_switch"><div class="slider round"><span class="on" id="deon">ON</span><span class="off" id="deoff">OFF</span></div></label>
                     </div>
 
 
@@ -366,7 +429,7 @@
                         <span>REPUBLICANS</span>
                     </div>
                     <div class="sbbot">
-                        <label class="switch"><input type="checkbox" id="republican_switch"><div class="slider2 round"><!--ADDED HTML --><span class="on" id="reon">ON</span><span class="off" id="reoff">OFF</span><!--END--></div></label>
+                        <label class="switch"><input type="checkbox" id="republican_switch"><div class="slider2 round"><span class="on" id="reon">ON</span><span class="off" id="reoff">OFF</span></div></label>
                     </div>
 
 
@@ -374,6 +437,7 @@
             </div>
 
         </div>
+    -->
 
     </div>
 
@@ -400,6 +464,23 @@
     var democratsSwitch = 0;
     var republicansSwitch = 0;
 
+    var tooltip = {
+        element: null,
+        init: function () {
+            this.element = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
+        },
+        show: function (t) {
+            this.element.html(t).transition().duration(200).style("left", d3.event.pageX + 20 + "px").style("top", d3.event.pageY - 20 + "px").style("opacity", .8);
+        },
+        move: function () {
+            this.element.transition().duration(30).style("left", d3.event.pageX + 20 + "px").style("top", d3.event.pageY - 20 + "px").style("opacity", .8);
+        },
+        hide: function () {
+            this.element.transition().duration(500).style("opacity", 0)
+        }
+    };
+
+    tooltip.init();
 
     var g = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -512,9 +593,23 @@
                     return 0.3;
                 })
                 .attr("y", function (d) { return 0; })
-                .attr("height", function (d) { return height; });
-        }
+                .attr("height", function (d) { return height; })
+                .on("mouseover", function (d, i) {
 
+                    tooltip.show(
+                        "President: " + d.president + "<br>"
+                        + "Vice President: " + d.vice_president + "<br>"
+                        + "Term: " + d.administration_start_at + "-" + d.administration_end_at
+                    );
+
+                })
+                .on("mousemove", function (d, i) {
+                    tooltip.move();
+                })
+                .on("mouseout", function (d, i) {
+                    tooltip.hide();
+                });
+        };
 
         function democrats() {
 
@@ -542,7 +637,22 @@
                     return 0.3;
                 })
                 .attr("y", function (d) { return 0; })
-                .attr("height", function (d) { return height; });
+                .attr("height", function (d) { return height; })
+                .on("mouseover", function (d, i) {
+
+                    tooltip.show(
+                        "House Majority: " + d.house_major + "<br>"
+                        + "Senate Majority: " + d.senate_major
+                    );
+
+                })
+                .on("mousemove", function (d, i) {
+                    tooltip.move();
+                })
+                .on("mouseout", function (d, i) {
+                    tooltip.hide();
+                });
+
 
             democrats.selectAll(".bar1")
                 .data(data1)
@@ -566,7 +676,21 @@
                     return 0.3;
                 })
                 .attr("y", function (d) { return 0; })
-                .attr("height", function (d) { return height; });
+                .attr("height", function (d) { return height; })
+                .on("mouseover", function (d, i) {
+
+                    tooltip.show(
+                        "House Majority: " + d.house_major + "<br>"
+                        + "Senate Majority: " + d.senate_major
+                    );
+
+                })
+                .on("mousemove", function (d, i) {
+                    tooltip.move();
+                })
+                .on("mouseout", function (d, i) {
+                    tooltip.hide();
+                });
 
         }
 
@@ -597,7 +721,21 @@
                     return 0.3;
                 })
                 .attr("y", function (d) { return 0; })
-                .attr("height", function (d) { return height; });
+                .attr("height", function (d) { return height; })
+                .on("mouseover", function (d, i) {
+
+                    tooltip.show(
+                        "House Majority: " + d.house_major + "<br>"
+                        + "Senate Majority: " + d.senate_major
+                    );
+
+                })
+                .on("mousemove", function (d, i) {
+                    tooltip.move();
+                })
+                .on("mouseout", function (d, i) {
+                    tooltip.hide();
+                });
 
             republicans.selectAll(".bar1")
                 .data(data1)
@@ -621,7 +759,21 @@
                     return 0.3;
                 })
                 .attr("y", function (d) { return 0; })
-                .attr("height", function (d) { return height; });
+                .attr("height", function (d) { return height; })
+                .on("mouseover", function (d, i) {
+
+                    tooltip.show(
+                        "House Majority: " + d.house_major + "<br>"
+                        + "Senate Majority: " + d.senate_major
+                    );
+
+                })
+                .on("mousemove", function (d, i) {
+                    tooltip.move();
+                })
+                .on("mouseout", function (d, i) {
+                    tooltip.hide();
+                });
 
         }
 
@@ -679,7 +831,7 @@
                 republicans();
             } else {
                 republicansSwitch = 0;
-                
+
             }
 
             presidentsSwitch = 0;
