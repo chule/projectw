@@ -429,8 +429,6 @@
             }
         })
 
-        console.log(data1[0]);
-
         x.domain(d3.extent(data1, function (d) { return parseTime(d.FiscalYear); }));
         y.domain([0, d3.max(data1, function (d) { return d.BudgetRequest; })]);
 
