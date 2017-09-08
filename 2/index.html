@@ -571,12 +571,25 @@
                 .text(data0[value].text);
         })
 
+        var inflationAdjusted = 0;
+        var usAssistance = 1;
+
         d3.selectAll("button").on("click", function (d) {
             var thisClass = d3.select(this).attr("class");
 
-            //console.log(thisClass)
+            if ((inflationAdjusted === 0 && thisClass !== "usAssistance") || 
+            (usAssistance === 0 && thisClass !== "inflationAdjusted") ||
+            (usAssistance === 1 && inflationAdjusted === 1)
+            ) {
 
-            if (thisClass !== "usAssistance") {
+                if (thisClass === "usAssistance") {
+                    usAssistance = (usAssistance + 1) % 2;
+                }
+
+                if (thisClass === "inflationAdjusted") {
+                    inflationAdjusted = (inflationAdjusted + 1) % 2;
+                }
+
                 var thisOpacity = d3.select("g." + thisClass).style("opacity");
 
                 var nextOpacity = (+thisOpacity + 1) % 2;
