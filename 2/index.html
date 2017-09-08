@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<link href="../bootstrap.min.css" rel="stylesheet" type="text/css">
 <style>
     body,
     text,
@@ -62,6 +61,8 @@
     .footer {
         text-align: center;
     }
+
+
     /* tabs */
     /* #exTab1 .tab-content {
   color : white;
@@ -75,7 +76,7 @@
 </style>
 <div class="wrapper">
     <div class="header">
-        <h1>US Funding for International Family Planning </h1>
+        <h2>US Funding for International Family Planning </h2>
         <div id="exTab1">
             <p><b>International family planning assistance has steadily increased since 1965. However, the numbers stay relatively static when adjusted for inflation. </b></p>
             <ul class="nav nav-tabs">
@@ -498,8 +499,8 @@
 
 
 <script src="../d3.v4.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="../jquery.min.js"></script>
+<script src="../bootstrap.min.js"></script>
 
 
 <script>
@@ -544,6 +545,10 @@
     //var values = ["usAssistance","inflationAdjusted","bilateralPrograms","contributionUnfpa","budgetRequest","congressionalAppropriation"];
     var values = ["usAssistance", "inflationAdjusted"];
     var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    var colorsNew = ["#1F8A8D","#FEE6AC"]
+    // 
+    // 
 
     d3.queue()
         .defer(d3.json, "data.json")
@@ -630,7 +635,8 @@
             newg.append("path")
                 .datum(data)
                 .attr("fill", function (d, i) {
-                    return color(values.indexOf(value));
+                    return colorsNew[values.indexOf(value)]
+                    //return color();
                 })
                 .attr("d", area)
                 .style("opacity", 0.5);
@@ -640,7 +646,8 @@
                 .attr("class", "line")
                 .style("fill", "none")
                 .style("stroke", function (d, i) {
-                    return color(values.indexOf(value));
+                    return colorsNew[values.indexOf(value)]
+                    //return color(values.indexOf(value));
                 })
                 .style("stroke-width", 2)
                 .attr("d", valueline);
