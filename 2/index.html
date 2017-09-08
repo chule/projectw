@@ -58,6 +58,10 @@
     .tab-pane {
         padding-top: 10px;
     }
+
+    .footer {
+        text-align: center;
+    }
     /* tabs */
     /* #exTab1 .tab-content {
   color : white;
@@ -73,11 +77,12 @@
     <div class="header">
         <h1>US Funding for International Family Planning </h1>
         <div id="exTab1">
-            <ul class="nav nav-pills">
+            <p><b>International family planning assistance has steadily increased since 1965. However, the numbers stay relatively static when adjusted for inflation. </b></p>
+            <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#1a" data-toggle="tab">Total U.S. Assistance</a>
                 </li>
-                <li><a href="#2a" data-toggle="tab">Political influence on U.S. Assistance</a>
+                <li><a href="#2a" data-toggle="tab">Political parties in power</a>
                 </li>
             </ul>
 
@@ -88,10 +93,7 @@
                         <div class="col-sm-4">
                             <div class="buttons"></div>
                         </div>
-                        <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non risus erat. Nam tincidunt sollicitudin
-                            eros id tristique. Duis tincidunt lorem vitae leo dictum, vel suscipit lacus pellentesque. Cras
-                            vel semper nisi. Pellentesque volutpat ex sit amet libero pharetra, quis maximus urna posuere.
-                            Proin convallis velit vitae nibh porttitor, eu pretium mauris vestibulum. </div>
+                        <div class="col-sm-8">Funding for this program has been affected by what party controls the congress and White House. Historically, when Republicans are in power, there has been less support for contraception related programs, and so assistance tends to decrease or stay static. </div>
                     </div>
 
 
@@ -115,10 +117,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non risus erat. Nam tincidunt sollicitudin
-                            eros id tristique. Duis tincidunt lorem vitae leo dictum, vel suscipit lacus pellentesque. Cras
-                            vel semper nisi. Pellentesque volutpat ex sit amet libero pharetra, quis maximus urna posuere.
-                            Proin convallis velit vitae nibh porttitor, eu pretium mauris vestibulum. </div>
+                        <div class="col-sm-8">President Reagan created The Mexico City Policy in 1980, and it has since been a highly politicized program. Each Republican president has either continued the policy or reinstated it, and every Democratic president has overturned it. 
+                                
+                                </div>
                     </div>
 
 
@@ -129,7 +130,11 @@
 
 
     <svg width="960" height="500"></svg>
-
+    <div class="footer">
+            Data used with permission from PAI’s interactive https://pai.org/centsandsensibility/ 
+            
+    </div>
+   
     <div class="content-row-scroll-btn nomargin">
 
         <style>
@@ -567,7 +572,8 @@
         values.forEach(function (value) {
             addGraphs(value);
             d3.select("div.buttons").append("button")
-                .attr("class", value)
+                .attr("id", value)
+                .classed("btn btn-default btn-sm", true)
                 .text(data0[value].text);
         })
 
@@ -575,7 +581,7 @@
         var usAssistance = 1;
 
         d3.selectAll("button").on("click", function (d) {
-            var thisClass = d3.select(this).attr("class");
+            var thisClass = d3.select(this).attr("id");
 
             if ((inflationAdjusted === 0 && thisClass !== "usAssistance") || 
             (usAssistance === 0 && thisClass !== "inflationAdjusted") ||
@@ -927,7 +933,7 @@
             .text("In the millions of dollars");
 
         d3.select("g.usAssistance").style("opacity", 1);
-        d3.select("button.usAssistance").style("color", "steelblue");
+        d3.select("button#usAssistance").style("color", "steelblue");
     };
 
 </script>
