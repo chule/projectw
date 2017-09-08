@@ -22,20 +22,20 @@
     }
 
     .buttons {
-        text-align: center;
-        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .switches {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
     }
-
-    .sbbot {
+    /* .sbbot {
         float: left;
         margin-left: 20px;
-    }
+    } */
 
     div.tooltip {
         max-width: 200px;
@@ -54,31 +54,76 @@
     .wrapper h4 {
         text-align: center;
     }
+
+    .tab-pane {
+        padding-top: 10px;
+    }
+    /* tabs */
+    /* #exTab1 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+} */
+    /* remove border radius for the tab */
+    /* #exTab1 .nav-pills > li > a {
+  border-radius: 0;
+} */
 </style>
 <div class="wrapper">
     <div class="header">
         <h1>US Funding for International Family Planning </h1>
-        <p>
-            Family planning/reproductive health • Maternal and child health • Nutrition • HIV/AIDS (including PEPFAR) • Malaria (including
-            President’s Malaria Initiative) • Tuberculosis • Infectious diseases • Neglected tropical diseases • Water sanitation
-            and hygiene (at household and community level)
-        </p>
-    </div>
+        <div id="exTab1">
+            <ul class="nav nav-pills">
+                <li class="active">
+                    <a href="#1a" data-toggle="tab">Total U.S. Assistance</a>
+                </li>
+                <li><a href="#2a" data-toggle="tab">Political influence on U.S. Assistance</a>
+                </li>
+            </ul>
 
-    <div class="buttons"></div>
-    <h4>Political influence on U.S. Assistance</h4>
-    <div class="switches">
-        
-        <div class="sbbot">
-            <label class="switch"><input type="checkbox" id="pr"><div class="slider3 round"><!--ADDED HTML --><span class="on" id="paon">ON</span><span class="off" id="paoff">OFF</span><!--END--></div></label>            PRESIDENTIAL ADMINISTRATIONS
-        </div>
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="1a">
 
-        <div class="sbbot">
-            <label class="switch"><input type="checkbox" id="democrat_switch"><div class="slider round"><!--ADDED HTML --><span class="on" id="deon">ON</span><span class="off" id="deoff">OFF</span><!--END--></div></label>            DEMOCRATS
-        </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="buttons"></div>
+                        </div>
+                        <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non risus erat. Nam tincidunt sollicitudin
+                            eros id tristique. Duis tincidunt lorem vitae leo dictum, vel suscipit lacus pellentesque. Cras
+                            vel semper nisi. Pellentesque volutpat ex sit amet libero pharetra, quis maximus urna posuere.
+                            Proin convallis velit vitae nibh porttitor, eu pretium mauris vestibulum. </div>
+                    </div>
 
-        <div class="sbbot">
-            <label class="switch"><input type="checkbox" id="republican_switch"><div class="slider2 round"><!--ADDED HTML --><span class="on" id="reon">ON</span><span class="off" id="reoff">OFF</span><!--END--></div></label>            REPUBLICANS
+
+                </div>
+                <div class="tab-pane" id="2a">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="switches">
+
+                                <div class="sbbot">
+                                    <label class="switch"><input type="checkbox" id="pr"><div class="slider3 round"><!--ADDED HTML --><span class="on" id="paon">ON</span><span class="off" id="paoff">OFF</span><!--END--></div></label>                                    Presidential administrators
+                                </div>
+
+                                <div class="sbbot">
+                                    <label class="switch"><input type="checkbox" id="democrat_switch"><div class="slider round"><!--ADDED HTML --><span class="on" id="deon">ON</span><span class="off" id="deoff">OFF</span><!--END--></div></label>                                    Democratic controlled congress
+                                </div>
+
+                                <div class="sbbot">
+                                    <label class="switch"><input type="checkbox" id="republican_switch"><div class="slider2 round"><!--ADDED HTML --><span class="on" id="reon">ON</span><span class="off" id="reoff">OFF</span><!--END--></div></label>                                    Republican controlled congress
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non risus erat. Nam tincidunt sollicitudin
+                            eros id tristique. Duis tincidunt lorem vitae leo dictum, vel suscipit lacus pellentesque. Cras
+                            vel semper nisi. Pellentesque volutpat ex sit amet libero pharetra, quis maximus urna posuere.
+                            Proin convallis velit vitae nibh porttitor, eu pretium mauris vestibulum. </div>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
     </div>
 
@@ -95,10 +140,10 @@
             .switch {
                 position: relative;
                 display: inline-block;
-                width: 90px;
+                width: 60px;
                 height: 16px;
                 margin-bottom: -2px;
-                margin-left: 10px;
+                /* margin-left: 10px; */
             }
 
             .switch input {
@@ -144,9 +189,10 @@
             .slider:before {
                 position: absolute;
                 content: "";
-                height: 16px;
-                width: 16px;
-                left: 4px;
+                height: 10px;
+                width: 10px;
+                left: 2px;
+                top: 3px;
                 /*
           bottom: 4px;
           */
@@ -158,9 +204,10 @@
             .slider2:before {
                 position: absolute;
                 content: "";
-                height: 16px;
-                width: 16px;
-                left: 4px;
+                height: 10px;
+                width: 10px;
+                left: 2px;
+                top: 3px;
                 /*
           bottom: 4px;
           */
@@ -172,9 +219,10 @@
             .slider3:before {
                 position: absolute;
                 content: "";
-                height: 16px;
-                width: 16px;
-                left: 4px;
+                height: 10px;
+                width: 10px;
+                left: 2px;
+                top: 3px;
                 /*
           bottom: 4px;
           */
@@ -208,21 +256,21 @@
             }
 
             input:checked+.slider:before {
-                -webkit-transform: translateX(55px);
-                -ms-transform: translateX(55px);
-                transform: translateX(55px);
+                -webkit-transform: translateX(45px);
+                -ms-transform: translateX(45px);
+                transform: translateX(45px);
             }
 
             input:checked+.slider2:before {
-                -webkit-transform: translateX(55px);
-                -ms-transform: translateX(55px);
-                transform: translateX(55px);
+                -webkit-transform: translateX(45px);
+                -ms-transform: translateX(45px);
+                transform: translateX(45px);
             }
 
             input:checked+.slider3:before {
-                -webkit-transform: translateX(55px);
-                -ms-transform: translateX(55px);
-                transform: translateX(55px);
+                -webkit-transform: translateX(45px);
+                -ms-transform: translateX(45px);
+                transform: translateX(45px);
             }
             /*------ ADDED CSS ---------*/
 
@@ -445,6 +493,9 @@
 
 
 <script src="../d3.v4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 
 <script>
     var svg = d3.select("svg"),
@@ -523,17 +574,22 @@
         d3.selectAll("button").on("click", function (d) {
             var thisClass = d3.select(this).attr("class");
 
-            var thisOpacity = d3.select("g." + thisClass).style("opacity");
+            //console.log(thisClass)
 
-            var nextOpacity = (+thisOpacity + 1) % 2;
+            if (thisClass !== "usAssistance") {
+                var thisOpacity = d3.select("g." + thisClass).style("opacity");
 
-            if (nextOpacity) {
-                d3.select(this).style("color", "steelblue");
-            } else {
-                d3.select(this).style("color", "black");
+                var nextOpacity = (+thisOpacity + 1) % 2;
+
+                if (nextOpacity) {
+                    d3.select(this).style("color", "steelblue");
+                } else {
+                    d3.select(this).style("color", "black");
+                }
+                d3.select("g." + thisClass).style("opacity", nextOpacity);
             }
 
-            d3.select("g." + thisClass).style("opacity", nextOpacity);
+
         });
 
 
