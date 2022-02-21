@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<link href="../bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    body,
+    text,
+    tspan {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .wrapper {
+        width: 960px;
+        margin: 0 auto;
+    }
+
+    .description,
+    .header {
+        width: 850px;
+        margin: 0 auto;
+        font-size: 14px;
+        color: #55585a;
+    }
+
+    .xAxis .domain {
+        display: none;
+    }
+
+    div.tooltip {
+        max-width: 200px;
+        position: absolute;
+        text-align: left;
+        display: inline;
+        padding: 6px;
+        font-size: 13px;
+        background-color: #000;
+        border: 0px;
+        border-radius: 2px;
+        pointer-events: none;
+        color: #fff;
+    }
+</style>
+<div class="wrapper">
+    <div class="header">
+        <h2>Spent Foreign Assistance in Health - Fiscal Year 2016</h2>
+        <p>
+                In the most recent incarnation of the Mexico City Policy, the scope of affected programs has greatly widened. Now, almost all foreign health assistance is potentially at risk.
+        </p>
+    </div>
+
+    <div class="buttons"></div>
+    <svg width="960" height="400"></svg>
+</div>
+<script src="../d3.v4.min.js"></script>
+<script>
+    var svg = d3.select("svg"),
+        margin = { top: 20, right: 20, bottom: 30, left: 40 },
+        width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom,
+        g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var formatSi = d3.format(".3s");
+
+    function formatAbbreviation(x) {
+        var s = formatSi(x);
+        switch (s[s.length - 1]) {
+            case "G": return "$" + s.slice(0, -1) + "B";
+        }
+        return "$" + s;
+    }
+
+    var colorScale = d3.scaleOrdinal(d3.schemeCategory20b).domain(d3.range(0, 19));
+
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    //var colors = ['#98abc5', '#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a'];
+
+    //vColors = ["#275B9C", "#9197AE", "#38686A", "#5254a3", "#6b6ecf", "#9c9ede", "#637939", "#8ca252", "#b5cf6b", "#cedb9c", "#8c6d31", "#bd9e39", "#e7ba52"];
+
+    vColors = ["#17BEBB", "#53EAE6", "#275B9C", "#3474CC", "#6898D9", "#ACC6EA", "#D62246", "#E35370", "#4B1D3F", "#913978"];
+
+
+    var x0 = d3.scaleBand()
+        .rangeRound([0, width])
+        .paddingInner(0.1);
+
+    var x1 = d3.scaleBand()
+        .padding(0.05);
+
+    var y = d3.scaleLinear()
+        .rangeRound([height, 0]);
+
+    var z = d3.scaleOrdinal()
+        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+
+    let data = [
+        {
+            "2016": 531480000,
+            "Area": "Family Planning and Reproductive Health",
+            "name": "FP"
+        },
+        {
+            "2016": 7614510000,
+            "Area": "Total Health",
+            "name": "total",
+            "values": [{
+                "Family Planning and Reproductive Health": 531480000,
+                "Maternal and Child Health": 784940000,
+
+                "HIV/AIDS": 4070000000,
+                "Tuberculosis": 149760000,
+                "Malaria": 627000000,
+                "Pandemic Influenza and Other Emerging Threats (PIOET)": 132380000,
+
+                "Health (General)": 649490000,
+                "Other Public Health Threats": 150110000,
+                
+                "Water Supply and Sanitation": 259470000,
+                "Nutrition": 259230000
+            }]
+
+
+
+
+            //  [
+            //             {
+            //                 "name": "Health (General)",
+            //                 "value": 649490000
+            //             },
+            //             {
+            //                 "name": "HIV/AIDS",
+            //                 "value": 4070000000
+            //             },
+            //             {
+            //                 "name": "Tuberculosis",
+            //                 "value": 149760000
+            //             },
+            //             {
+            //                 "name": "Malaria",
+            //                 "value": 627000000
+            //             },
+            //             {
+            //                 "name": "Pandemic Influenza and Other Emerging Threats (PIOET)",
+            //                 "value": 132380000
+            //             },
+            //             {
+            //                 "name": "Other Public Health Threats",
+            //                 "value": 150110000
+            //             },
+            //             {
+            //                 "name": "Maternal and Child Health",
+            //                 "value": 784940000
+            //             },
+            //             {
+            //                 "name": "Family Planning and Reproductive Health",
+            //                 "value": 531480000
+            //             },
+            //             {
+            //                 "name": "Water Supply and Sanitation",
+            //                 "value": 259470000
+            //             },
+            //             {
+            //                 "name": "Nutrition",
+            //                 "value": 259230000
+            //             }
+            //         ]
+        }
+    ];
+
+
+
+
+
+    // d3.csv("data.csv", function(d, i, columns) {
+    //   for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
+    //   return d;
+    // }, function(error, data) {
+    //   if (error) throw error;
+
+
+    var tooltip = {
+        element: null,
+        init: function () {
+            this.element = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
+        },
+        show: function (t) {
+            this.element.html(t).transition().duration(200).style("left", d3.event.pageX + 20 + "px").style("top", d3.event.pageY - 20 + "px").style("opacity", .8);
+        },
+        move: function () {
+            this.element.transition().duration(30).style("left", d3.event.pageX + 20 + "px").style("top", d3.event.pageY - 20 + "px").style("opacity", .8);
+        },
+        hide: function () {
+            this.element.transition().duration(500).style("opacity", 0)
+        }
+    };
+
+    tooltip.init();
+
+    var keys = ["2016"];
+
+    //   var stackKeys = data[1].values.map(function (d) {
+    //       return d.name;
+    //   });
+
+    stackKeys = [
+                "Family Planning and Reproductive Health",
+                "Maternal and Child Health",
+                "HIV/AIDS",
+                "Tuberculosis",
+                "Malaria",
+                "Pandemic Influenza and Other Emerging Threats (PIOET)",
+                "Health (General)",
+                "Other Public Health Threats",  
+                "Water Supply and Sanitation",
+                "Nutrition"
+    ]
+
+
+    x0.domain(data.map(function (d) { return d.Area; }));
+    x1.domain(keys).rangeRound([0, x0.bandwidth()]);
+    y.domain([0, d3.max(data, function (d) { return d3.max(keys, function (key) { return d[key]; }); })]).nice();
+
+    var barGroups = g.append("g")
+        .selectAll("g")
+        .data(data)
+        .enter().append("g")
+        .attr("class", function (d) {
+            return d.name;
+        })
+        .attr("transform", function (d) { return "translate(" + x0(d.Area) + ",0)"; })
+        .selectAll("rect")
+        .data(function (d) { return keys.map(function (key) { return { key: key, value: d[key] }; }); });
+
+    barGroups.enter().append("rect")
+        .attr("x", function (d) { return x1(d.key); })
+        .attr("y", function (d) { return y(d.value); })
+        .attr("width", x1.bandwidth())
+        .attr("height", function (d) { return height - y(d.value); })
+        .attr("fill", "#17BEBB");
+
+    barGroups.enter().append("text")
+        .text(function (d, i) {
+            return formatAbbreviation(d.value);
+        })
+        .attr("x", function (d) { return x1(d.key) + x1.bandwidth() / 2; })
+        .attr("y", function (d) { return y(d.value) - 5; })
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 10)
+        .attr("text-anchor", "middle")
+
+
+    g.append("g")
+        .attr("class", "xAxis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x0));
+
+
+    g.append("g")
+        .attr("class", "axis")
+        //.attr("transform", "translate(0," + height + ")")
+        .call(d3.axisLeft(y)
+            .ticks(20)
+            .tickFormat(formatAbbreviation));
+
+
+    d3.select("g.total").select("rect").remove();
+
+    d3.select("g.total")
+        .selectAll("g")
+        .data(d3.stack().keys(stackKeys)(data[1].values))
+        .enter().append("g")
+        //   .attr("fill", "steelblue")
+        // .selectAll("rect")
+        // .data(function(d) { 
+        //     console.log(d)
+        //     return d; 
+        //     })
+        // .enter()
+        .append("rect")
+        .attr("x", 20)
+        .style("fill", function (d, i) {
+            return vColors[i];
+        })
+        .attr("y", function (d) { return y(d[0][1]); })
+        .attr("height", function (d) { return y(d[0][0]) - y(d[0][1]); })
+        .attr("width", x1.bandwidth())
+        .on("mouseover", function (d, i) {
+
+            tooltip.show("<strong><span>" + d.key +
+                "</strong><br></span>" + "<strong>Funding: </strong><span>" +
+                formatAbbreviation(d[0].data[d.key]) + "</span>");
+            d3.select(this)
+                .style("opacity", 0.9)
+
+        })
+        .on("mousemove", function (d, i) {
+            tooltip.move();
+        })
+        .on("mouseout", function (d, i) {
+            tooltip.hide();
+            d3.select(this)
+                .style("opacity", 1)
+
+
+        });
+
+
+//   var legend = g.append("g")
+//       .attr("font-family", "sans-serif")
+//       .attr("font-size", 10)
+//       .attr("text-anchor", "end")
+//     .selectAll("g")
+//     .data(keys.slice().reverse())
+//     .enter().append("g")
+//       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+//   legend.append("rect")
+//       .attr("x", width - 19)
+//       .attr("width", 19)
+//       .attr("height", 19)
+//       .attr("fill", z);
+
+//   legend.append("text")
+//       .attr("x", width - 24)
+//       .attr("y", 9.5)
+//       .attr("dy", "0.32em")
+//       .text(function(d) { return d; });
+// });
+
+</script>

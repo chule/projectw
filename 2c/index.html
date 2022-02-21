@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="../bootstrap.min.css" rel="stylesheet" type="text/css">
+    <style>
+        body,
+        text,
+        tspan {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .wrapper {
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        .description,
+        .header {
+            width: 850px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #55585a;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .switches {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        /* .sbbot {
+                float: left;
+                margin-left: 20px;
+            } */
+
+        div.tooltip {
+            max-width: 200px;
+            position: absolute;
+            text-align: left;
+            display: inline;
+            padding: 6px;
+            font-size: 13px;
+            background-color: #000;
+            border: 0px;
+            border-radius: 2px;
+            pointer-events: none;
+            color: #fff;
+        }
+
+        .wrapper h4 {
+            text-align: center;
+        }
+
+        .tab-pane {
+            padding-top: 10px;
+        }
+
+        .footer {
+            text-align: center;
+        }
+        /* tabs */
+        /* #exTab1 .tab-content {
+          color : white;
+          background-color: #428bca;
+          padding : 5px 15px;
+        } */
+        /* remove border radius for the tab */
+        /* #exTab1 .nav-pills > li > a {
+          border-radius: 0;
+        } */
+    </style>
+</head>
+
+<body>
+
+
+    <div class="wrapper">
+        <div class="header">
+            <h2>US Funding for International Family Planning </h2>
+            <div id="exTab1">
+                <p><b>International family planning assistance has steadily increased since 1965. However, the numbers stay relatively static when adjusted for inflation. </b></p>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#1a" data-toggle="tab">Total U.S. Assistance</a>
+                    </li>
+                    <li><a href="#2a" data-toggle="tab">Political parties in power</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="1a">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="buttons"></div>
+                            </div>
+                            <div class="col-sm-8">Funding for this program has been affected by what party controls the congress and White House.
+                                Historically, when Republicans are in power, there has been less support for contraception
+                                related programs, and so assistance tends to decrease or stay static. </div>
+                        </div>
+
+
+                    </div>
+                    <div class="tab-pane" id="2a">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="switches">
+
+                                    <div class="sbbot">
+                                        <label class="switch"><input type="checkbox" id="pr"><div class="slider3 round"><!--ADDED HTML --><span class="on" id="paon">ON</span><span class="off" id="paoff">OFF</span><!--END--></div></label>                                        Presidential administrators
+                                    </div>
+
+                                    <div class="sbbot">
+                                        <label class="switch"><input type="checkbox" id="democrat_switch"><div class="slider round"><!--ADDED HTML --><span class="on" id="deon">ON</span><span class="off" id="deoff">OFF</span><!--END--></div></label>                                        DEM controlled congress
+                                    </div>
+
+                                    <div class="sbbot">
+                                        <label class="switch"><input type="checkbox" id="republican_switch"><div class="slider2 round"><!--ADDED HTML --><span class="on" id="reon">ON</span><span class="off" id="reoff">OFF</span><!--END--></div></label>                                        GOP controlled congress
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">President Reagan created The Mexico City Policy in 1980, and it has since been a highly politicized
+                                program. Each Republican president has either continued the policy or reinstated it, and
+                                every Democratic president has overturned it.
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <svg width="960" height="300"></svg>
+        <div class="footer">
+            Data used with permission from PAI’s interactive https://pai.org/centsandsensibility/
+
+        </div>
+
+        <div class="content-row-scroll-btn nomargin">
+
+            <style>
+                label {
+                    margin-bottom: 0;
+                }
+
+                .switch {
+                    position: relative;
+                    display: inline-block;
+                    width: 60px;
+                    height: 16px;
+                    margin-bottom: -2px;
+                    /* margin-left: 10px; */
+                }
+
+                .switch input {
+                    display: none;
+                }
+
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #1F81EA;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                .slider2 {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #F15358;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                .slider3 {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #B4B4B4;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 10px;
+                    width: 10px;
+                    left: 2px;
+                    top: 3px;
+                    /*
+          bottom: 4px;
+          */
+                    background-color: #114378;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                .slider2:before {
+                    position: absolute;
+                    content: "";
+                    height: 10px;
+                    width: 10px;
+                    left: 2px;
+                    top: 3px;
+                    /*
+          bottom: 4px;
+          */
+                    background-color: #CC282C;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                .slider3:before {
+                    position: absolute;
+                    content: "";
+                    height: 10px;
+                    width: 10px;
+                    left: 2px;
+                    top: 3px;
+                    /*
+          bottom: 4px;
+          */
+                    background-color: #3C3C3C;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                input:checked+.slider {
+                    background-color: #1F81EA;
+                }
+
+                input:focus+.slider {
+                    box-shadow: 0 0 1px #2196F3;
+                }
+
+                input:checked+.slider2 {
+                    background-color: #F15358;
+                }
+
+                input:focus+.slider2 {
+                    box-shadow: 0 0 1px #2196F3;
+                }
+
+                input:checked+.slider3 {
+                    background-color: #B4B4B4;
+                }
+
+                input:focus+.slider3 {
+                    box-shadow: 0 0 1px #2196F3;
+                }
+
+                input:checked+.slider:before {
+                    -webkit-transform: translateX(45px);
+                    -ms-transform: translateX(45px);
+                    transform: translateX(45px);
+                }
+
+                input:checked+.slider2:before {
+                    -webkit-transform: translateX(45px);
+                    -ms-transform: translateX(45px);
+                    transform: translateX(45px);
+                }
+
+                input:checked+.slider3:before {
+                    -webkit-transform: translateX(45px);
+                    -ms-transform: translateX(45px);
+                    transform: translateX(45px);
+                }
+                /*------ ADDED CSS ---------*/
+
+                .on {
+                    display: none;
+                }
+
+                .on,
+                .off {
+                    color: white;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    left: 50%;
+                    font-size: 10px;
+                    font-family: Verdana, sans-serif;
+                }
+
+                input:checked+.slider .on {
+                    display: block;
+                }
+
+                input:checked+.slider .off {
+                    display: none;
+                }
+
+                input:checked+.slider2 .on {
+                    display: block;
+                }
+
+                input:checked+.slider2 .off {
+                    display: none;
+                }
+
+                input:checked+.slider3 .on {
+                    display: block;
+                }
+
+                input:checked+.slider3 .off {
+                    display: none;
+                }
+                /*--------- END --------*/
+                /* Rounded sliders */
+
+                .slider.round {
+                    border-radius: 34px;
+                }
+
+                .slider2.round {
+                    border-radius: 34px;
+                }
+
+                .slider3.round {
+                    border-radius: 34px;
+                }
+
+                .slider.round:before {
+                    border-radius: 50%;
+                }
+
+                .slider2.round:before {
+                    border-radius: 50%;
+                }
+
+                .slider3.round:before {
+                    border-radius: 50%;
+                }
+
+                .democrats,
+                .republicans,
+                .pa {
+                    /*
+                        float:left;
+                        */
+                    margin-right: 45px;
+                    font-weight: bold;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .democrats {
+                    color: #204C7E;
+                }
+
+                .republicans {
+                    color: #D0484C;
+                }
+
+                .pa {
+                    color: #3F3F3F;
+                    width: 270px;
+                }
+
+                .congress-inner {
+                    width: 520px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .sb-btn-inner {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .demoimg {
+                    vertical-align: initial;
+                }
+            </style>
+            <!-- <div class="row nomargin pa-row">
+            <style>
+                .pa-bottom-text {
+                    text-align: center;
+                    color: #555;
+                    font-weight: 900;
+                    margin-top: 30px;
+                    margin-bottom: 40px;
+                }
+
+                .partycontrol {
+                    text-align: center;
+                    margin-top: 20px;
+                    font-family: Gotham SSm A, Gotham SSm B, Montserrat, Helveltica Neue, Helvetica, Arial, sans-serif;
+                    margin-bottom: 20px;
+                    color: #3F3F3F;
+                    font-weight: bold;
+                }
+
+                .congressimg {
+                    margin-left: 30px;
+                }
+
+                @media screen and (min-width: 768px) {
+                    .rwd-break {
+                        display: none;
+                    }
+                }
+
+                #slidemiddle {
+                    display: block;
+                    margin: auto;
+                    text-align: center;
+                    float: none;
+                }
+
+                .sbtop,
+                .sbbot {
+                    float: left;
+                    margin-left: 20px;
+                }
+
+                div.tooltip {
+                    max-width: 200px;
+                    position: absolute;
+                    text-align: left;
+                    display: inline;
+                    padding: 6px;
+                    font-size: 13px;
+                    background-color: #000;
+                    border: 0px;
+                    border-radius: 2px;
+                    pointer-events: none;
+                    color: #fff;
+                }
+            </style>
+
+
+        </div> -->
+            <!-- 
+        <div class="sb-btn-inner row nomargin">
+            <div class="pa">
+                <div class="sbtop">
+                    <img class="demoimg" src="PresAdmin_Icon.png">
+                    <span>PRESIDENTIAL ADMINISTRATIONS</span>
+                </div>
+                <div class="sbbot" id="slidemiddle">
+                    <label class="switch"><input type="checkbox" id="pr"><div class="slider3 round"><span class="on" id="paon">ON</span><span class="off" id="paoff">OFF</span></div></label>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="congress-row row nomargin">
+            <p class="partycontrol" style="color:#3F3F3F;">
+                PARTY CONTROL IN CONGRESS
+            </p>
+            <div class="congress-inner row nomargin">
+                <div class="democrats">
+                    <div class="sbtop">
+                        <img class="demoimg congressimg" src="Democrat_Icon.png">
+                        <span>DEMOCRATS</span>
+                    </div>
+                    <div class="sbbot">
+                        <label class="switch"><input type="checkbox" id="democrat_switch"><div class="slider round"><span class="on" id="deon">ON</span><span class="off" id="deoff">OFF</span></div></label>
+                    </div>
+
+
+                </div>
+                <div class="republicans">
+                    <div class="sbtop">
+                        <img class="demoimg congressimg" src="Republican_Icon.png">
+                        <span>REPUBLICANS</span>
+                    </div>
+                    <div class="sbbot">
+                        <label class="switch"><input type="checkbox" id="republican_switch"><div class="slider2 round"><span class="on" id="reon">ON</span><span class="off" id="reoff">OFF</span></div></label>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    -->
+
+        </div>
+
+    </div>
+
+
+    <script src="../d3.v4.min.js"></script>
+    <script src="../jquery.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+
+
+    <script>
+        var svg = d3.select("svg"),
+            margin = { top: 20, right: 20, bottom: 30, left: 50 },
+            width = +svg.attr("width") - margin.left - margin.right,
+            height = +svg.attr("height") - margin.top - margin.bottom;
+
+        var parseTime = d3.timeParse("%Y");
+
+        var x = d3.scaleTime()
+            .range([0, width]);
+
+        var y = d3.scaleLinear()
+            .range([height, 0]);
+
+        var presidentsSwitch = 0;
+        var democratsSwitch = 0;
+        var republicansSwitch = 0;
+
+        var tooltip = {
+            element: null,
+            init: function () {
+                this.element = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
+            },
+            show: function (t) {
+                this.element.html(t).transition().duration(200).style("left", d3.event.pageX + 20 + "px").style("top", d3.event.pageY - 20 + "px").style("opacity", .8);
+            },
+            move: function () {
+                this.element.transition().duration(30).style("left", d3.event.pageX + 20 + "px").style("top", d3.event.pageY - 20 + "px").style("opacity", .8);
+            },
+            hide: function () {
+                this.element.transition().duration(500).style("opacity", 0)
+            }
+        };
+
+        tooltip.init();
+
+        var g = svg.append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        //var values = ["usAssistance","inflationAdjusted","bilateralPrograms","contributionUnfpa","budgetRequest","congressionalAppropriation"];
+        var values = ["usAssistance", "inflationAdjusted"];
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        var colorsNew = ["#1F8A8D", "#FEE6AC"]
+        // 
+        // 
+
+        d3.queue()
+            .defer(d3.json, "data.json")
+            .defer(d3.json, "data1.json")
+            .await(ready);
+
+
+        function ready(error, data0, data1) {
+            if (error) throw error;
+
+            var data = data0.years.map(function (d, i) {
+                return {
+                    date: parseTime(d),
+                    usAssistance: data0.usAssistance.values[i],
+                    inflationAdjusted: data0.inflationAdjusted.values[i],
+                    bilateralPrograms: data0.bilateralPrograms.values[i],
+                    contributionUnfpa: data0.contributionUnfpa.values[i],
+                    budgetRequest: data0.budgetRequest.values[i],
+                    congressionalAppropriation: data0.congressionalAppropriation.values[i],
+                }
+            })
+
+            x.domain(d3.extent(data1, function (d) { return parseTime(d.FiscalYear); }));
+            y.domain([0, d3.max(data1, function (d) { return d.BudgetRequest; })]);
+
+            values.forEach(function (value) {
+                addGraphs(value);
+                d3.select("div.buttons").append("button")
+                    .attr("id", value)
+                    .classed("btn btn-default btn-sm", true)
+                    .text(data0[value].text);
+            })
+
+            var inflationAdjusted = 0;
+            var usAssistance = 1;
+
+            d3.selectAll("button").on("click", function (d) {
+                var thisClass = d3.select(this).attr("id");
+
+                if ((inflationAdjusted === 0 && thisClass !== "usAssistance") ||
+                    (usAssistance === 0 && thisClass !== "inflationAdjusted") ||
+                    (usAssistance === 1 && inflationAdjusted === 1)
+                ) {
+
+                    if (thisClass === "usAssistance") {
+                        usAssistance = (usAssistance + 1) % 2;
+                    }
+
+                    if (thisClass === "inflationAdjusted") {
+                        inflationAdjusted = (inflationAdjusted + 1) % 2;
+                    }
+
+                    var thisOpacity = d3.select("g." + thisClass).style("opacity");
+
+                    var nextOpacity = (+thisOpacity + 1) % 2;
+
+                    if (nextOpacity) {
+                        d3.select(this).style("color", "steelblue");
+                    } else {
+                        d3.select(this).style("color", "black");
+                    }
+                    d3.select("g." + thisClass).style("opacity", nextOpacity);
+                }
+
+
+            });
+
+
+            function addGraphs(value) {
+                var area = d3.area()
+                    .x(function (d) { return x(d.date); })
+                    .y1(function (d) { return y(d[value]); });
+
+                var valueline = d3.line()
+                    .x(function (d) { return x(d.date); })
+                    .y(function (d) { return y(d[value]); });
+
+                area.y0(y(0));
+
+                var newg = g.append("g")
+                    .attr("class", value)
+                    .style("opacity", 0);
+
+                newg.append("path")
+                    .datum(data)
+                    .attr("fill", function (d, i) {
+                        return colorsNew[values.indexOf(value)]
+                        //return color();
+                    })
+                    .attr("d", area)
+                    .style("opacity", 0.5);
+
+                newg.append("path")
+                    .data([data])
+                    .attr("class", "line")
+                    .style("fill", "none")
+                    .style("stroke", function (d, i) {
+                        return colorsNew[values.indexOf(value)]
+                        //return color(values.indexOf(value));
+                    })
+                    .style("stroke-width", 2)
+                    .attr("d", valueline);
+
+            }
+
+            function presidents() {
+
+                var presidents = g.append("g").attr("class", "presidentsGraph");
+
+                presidents.selectAll(".bar")
+                    .data(data1)
+                    .enter().append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                    .attr("width", x(parseTime(2018)) / 50)
+                    .style("fill", function (d) {
+                        //return d.house_major === "Democrats" ? "blue" : "red";
+                        return d.party === "Democrats" ? "blue" : "red";
+                    })
+                    .style("opacity", function (d, i) {
+                        if (i === data1.length - 1) {
+                            return 0;
+                        }
+                        return 0.3;
+                    })
+                    .attr("y", function (d) { return 0; })
+                    .attr("height", function (d) { return height; })
+                    .on("mouseover", function (d, i) {
+
+                        tooltip.show(
+                            "President: " + d.president + "<br>"
+                            + "Vice President: " + d.vice_president + "<br>"
+                            + "Term: " + d.administration_start_at + "-" + d.administration_end_at
+                        );
+
+                    })
+                    .on("mousemove", function (d, i) {
+                        tooltip.move();
+                    })
+                    .on("mouseout", function (d, i) {
+                        tooltip.hide();
+                    });
+            };
+
+            function democrats() {
+
+                var democrats = g.append("g").attr("class", "democratsGraph");
+
+                democrats.selectAll(".bar")
+                    .data(data1)
+                    .enter().append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                    .attr("width", x(parseTime(2018)) / 50)
+                    .style("fill", function (d) {
+                        //return d.house_major === "Democrats" ? "blue" : "red";
+                        return d.house_major === "Democrats" ? "blue" : null;
+                    })
+                    .style("display", function (d) {
+                        if (d.house_major !== "Democrats") {
+                            return "none";
+                        }
+                    })
+                    .style("opacity", function (d, i) {
+                        if (i === data1.length - 1) {
+                            return 0;
+                        }
+                        return 0.3;
+                    })
+                    .attr("y", function (d) { return 0; })
+                    .attr("height", function (d) { return height; })
+                    .on("mouseover", function (d, i) {
+
+                        tooltip.show(
+                            "House Majority: " + d.house_major + "<br>"
+                            + "Senate Majority: " + d.senate_major
+                        );
+
+                    })
+                    .on("mousemove", function (d, i) {
+                        tooltip.move();
+                    })
+                    .on("mouseout", function (d, i) {
+                        tooltip.hide();
+                    });
+
+
+                democrats.selectAll(".bar1")
+                    .data(data1)
+                    .enter().append("rect")
+                    .attr("class", "bar1")
+                    .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                    .attr("width", x(parseTime(2018)) / 50)
+                    .style("fill", function (d) {
+                        //return d.house_major === "Democrats" ? "blue" : "red";
+                        return d.senate_major === "Democrats" ? "blue" : null;
+                    })
+                    .style("display", function (d) {
+                        if (d.senate_major !== "Democrats") {
+                            return "none";
+                        }
+                    })
+                    .style("opacity", function (d, i) {
+                        if (i === data1.length - 1) {
+                            return 0;
+                        }
+                        return 0.3;
+                    })
+                    .attr("y", function (d) { return 0; })
+                    .attr("height", function (d) { return height; })
+                    .on("mouseover", function (d, i) {
+
+                        tooltip.show(
+                            "House Majority: " + d.house_major + "<br>"
+                            + "Senate Majority: " + d.senate_major
+                        );
+
+                    })
+                    .on("mousemove", function (d, i) {
+                        tooltip.move();
+                    })
+                    .on("mouseout", function (d, i) {
+                        tooltip.hide();
+                    });
+
+            }
+
+
+            function republicans() {
+
+                var republicans = g.append("g").attr("class", "republicansGraph");
+
+                republicans.selectAll(".bar")
+                    .data(data1)
+                    .enter().append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                    .attr("width", x(parseTime(2018)) / 50)
+                    .style("fill", function (d) {
+                        //return d.house_major === "Democrats" ? "blue" : "red";
+                        return d.house_major === "Republicans" ? "red" : null;
+                    })
+                    .style("display", function (d) {
+                        if (d.house_major !== "Republicans") {
+                            return "none";
+                        }
+                    })
+                    .style("opacity", function (d, i) {
+                        if (i === data1.length - 1) {
+                            return 0;
+                        }
+                        return 0.3;
+                    })
+                    .attr("y", function (d) { return 0; })
+                    .attr("height", function (d) { return height; })
+                    .on("mouseover", function (d, i) {
+
+                        tooltip.show(
+                            "House Majority: " + d.house_major + "<br>"
+                            + "Senate Majority: " + d.senate_major
+                        );
+
+                    })
+                    .on("mousemove", function (d, i) {
+                        tooltip.move();
+                    })
+                    .on("mouseout", function (d, i) {
+                        tooltip.hide();
+                    });
+
+                republicans.selectAll(".bar1")
+                    .data(data1)
+                    .enter().append("rect")
+                    .attr("class", "bar1")
+                    .attr("x", function (d) { return x(parseTime(d.FiscalYear)); })
+                    .attr("width", x(parseTime(2018)) / 50)
+                    .style("fill", function (d) {
+                        //return d.house_major === "Democrats" ? "blue" : "red";
+                        return d.senate_major === "Republicans" ? "red" : null;
+                    })
+                    .style("display", function (d) {
+                        if (d.senate_major !== "Republicans") {
+                            return "none";
+                        }
+                    })
+                    .style("opacity", function (d, i) {
+                        if (i === data1.length - 1) {
+                            return 0;
+                        }
+                        return 0.3;
+                    })
+                    .attr("y", function (d) { return 0; })
+                    .attr("height", function (d) { return height; })
+                    .on("mouseover", function (d, i) {
+
+                        tooltip.show(
+                            "House Majority: " + d.house_major + "<br>"
+                            + "Senate Majority: " + d.senate_major
+                        );
+
+                    })
+                    .on("mousemove", function (d, i) {
+                        tooltip.move();
+                    })
+                    .on("mouseout", function (d, i) {
+                        tooltip.hide();
+                    });
+
+            }
+
+            d3.select("#pr").on("change", function (d) {
+
+                d3.select(".republicansGraph").remove();
+                d3.select(".presidentsGraph").remove();
+                d3.select(".democratsGraph").remove();
+
+                if (presidentsSwitch === 0) {
+                    presidentsSwitch = 1;
+                    presidents();
+                } else {
+                    presidentsSwitch = 0;
+                }
+
+
+                democratsSwitch = 0;
+                republicansSwitch = 0;
+                d3.select("#democrat_switch").property("checked", false);
+                d3.select("#republican_switch").property("checked", false);
+
+            })
+
+            d3.select("#democrat_switch").on("change", function (d) {
+
+                d3.select(".republicansGraph").remove();
+                d3.select(".presidentsGraph").remove();
+                d3.select(".democratsGraph").remove();
+
+                if (democratsSwitch === 0) {
+                    democratsSwitch = 1;
+                    democrats();
+                } else {
+                    democratsSwitch = 0;
+                }
+
+
+                presidentsSwitch = 0;
+                republicansSwitch = 0;
+                d3.select("#pr").property("checked", false);
+                d3.select("#republican_switch").property("checked", false);
+
+            })
+
+
+            d3.select("#republican_switch").on("change", function (d) {
+
+                d3.select(".republicansGraph").remove();
+                d3.select(".presidentsGraph").remove();
+                d3.select(".democratsGraph").remove();
+
+                if (republicansSwitch === 0) {
+                    republicansSwitch = 1;
+                    republicans();
+                } else {
+                    republicansSwitch = 0;
+
+                }
+
+                presidentsSwitch = 0;
+                democratsSwitch = 0;
+                d3.select("#pr").property("checked", false);
+                d3.select("#democrat_switch").property("checked", false);
+
+            })
+
+
+            g.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+            g.append("g")
+                .call(d3.axisLeft(y))
+                .append("text")
+                .attr("fill", "#000")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -40)
+                .attr("dy", "0.71em")
+                .attr("x", -80)
+                .attr("text-anchor", "end")
+                .text("In the millions of dollars");
+
+            d3.select("g.usAssistance").style("opacity", 1);
+            d3.select("button#usAssistance").style("color", "steelblue");
+        };
+
+    </script>
+</body>
+
+</html>
